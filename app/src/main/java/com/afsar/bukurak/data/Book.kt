@@ -13,5 +13,6 @@ data class Book(
     val title: String,
     val description: String,
     val author: String,
-    val publishedYear: Int
+    val publishedYear: Int,
+    val pageCount: Int = 0
 ) : Parcelable

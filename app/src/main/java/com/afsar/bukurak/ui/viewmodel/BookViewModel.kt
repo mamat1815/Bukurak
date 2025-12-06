@@ -12,20 +12,20 @@ import kotlinx.coroutines.launch
 
 class BookViewModel(private val repository: BookRepository) : ViewModel() {
 
-
     val allBooks: StateFlow<List<Book>> = repository.getAllBooks.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000L),
         initialValue = emptyList()
     )
 
-    fun addBook(title: String, description: String, author: String, publishedYear: Int) {
+    fun addBook(title: String, description: String, author: String, publishedYear: Int, pageCount: Int) {
         viewModelScope.launch {
             val newBook = Book(
                 title = title,
                 description = description,
                 author = author,
-                publishedYear = publishedYear
+                publishedYear = publishedYear,
+                pageCount = pageCount
             )
             repository.insert(newBook)
         }
